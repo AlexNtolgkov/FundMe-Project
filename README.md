@@ -1,66 +1,94 @@
-## Foundry
+# FundMe Smart Contract Project
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+## Overview
 
-Foundry consists of:
+The FundMe Smart Contract project is a decentralized application built on the Ethereum blockchain. The primary objective of this project is to allow users to contribute funds and for the contract owner to withdraw the funds. The project leverages Chainlink price feeds to ensure that users contribute a minimum amount in USD, regardless of the volatility in ETH prices.
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+## Project Structure
 
-## Documentation
+The project is organized into several folders, each containing specific contracts and test files:
 
-https://book.getfoundry.sh/
+## Script Folder: 
 
-## Usage
+Contains deployment and interaction scripts for the contracts.
 
-### Build
+## src Folder: 
 
-```shell
-$ forge build
-```
+Contains the main contract and library code.
 
-### Test
+## test Folder: 
 
-```shell
-$ forge test
-```
+Contains unit and integration tests to verify the functionality of the contracts.
 
-### Format
+## script Folder
 
-```shell
-$ forge fmt
-```
+## DeployFundMe.sol
 
-### Gas Snapshots
+This script handles the deployment of the FundMe contract. It retrieves the appropriate price feed address depending on the active network configuration (e.g., Sepolia, Mainnet, or Anvil) and deploys the contract.
 
-```shell
-$ forge snapshot
-```
+## HelperConfig.sol
 
-### Anvil
+This script defines the network configurations and retrieves or creates the appropriate price feed address depending on the active blockchain network.
 
-```shell
-$ anvil
-```
+## Interactions.s.sol
 
-### Deploy
+Contains two scripts: FundFundMe and WithdrawFundMe.
 
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
+## FundFundMe
 
-### Cast
+Script to fund the FundMe contract with a specified amount of ETH.
 
-```shell
-$ cast <subcommand>
-```
+## WithdrawFundMe
 
-### Help
+Script to withdraw the funds from the FundMe contract by the owner.
 
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+## Src Folder
+
+FundMe.sol
+
+The main contract that handles funding and withdrawal functionalities. It ensures a minimum amount of USD is contributed using the Chainlink price feeds.
+
+## PriceConverter.sol
+
+A library used by the FundMe contract to convert ETH to USD using Chainlink price feeds.
+
+## Test Folder
+
+Integration Tests Folder
+
+Contains tests that simulate real-world scenarios and interactions between different contracts. These tests ensure the overall integration of the contract's functionalities.
+
+# Mocks Folder
+
+Contains mock contracts used to simulate external dependencies (e.g., Chainlink price feeds) during testing.
+
+# Unit Tests Folder
+
+Contains unit tests that focus on testing individual components of the FundMe contract. It verifies that the contract behaves as 
+expected under various conditions.
+
+# Dependencies
+
+Foundry: A development framework for building and testing Solidity smart contracts.
+
+Chainlink: Used for integrating decentralized price feeds into the FundMe contract.
+Usage
+
+## Deploying the Contract:
+
+Run the DeployFundMe script to deploy the FundMe contract to the desired network. The script will automatically select the appropriate price feed based on the active network.
+
+# Funding the Contract:
+
+Use the FundFundMe script to fund the FundMe contract with ETH. Ensure that the ETH amount converted to USD meets the minimum requirement.
+
+## Withdrawing Funds:
+
+Only the owner can withdraw funds using the WithdrawFundMe script. The contract will transfer all collected ETH to the owner's address.
+
+## Testing:
+
+Run the unit and integration tests provided in the test folder to ensure all functionalities are working correctly.
+License
+
+This project is licensed under the MIT License.
