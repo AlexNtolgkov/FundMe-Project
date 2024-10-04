@@ -1,4 +1,4 @@
-## PoolingFunds Smart Contract Project
+## FundMe Smart Contract Project
 ## Overview
 
 The FundMe Smart Contract is a decentralized application built on Ethereum that allows users to contribute funds. The contract owner can then withdraw these funds. This project uses Chainlink price feeds to ensure that contributions meet a minimum USD value, regardless of ETH's price fluctuations.
